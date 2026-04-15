@@ -1,0 +1,5 @@
+[build]
+  command = "npm run db:push && npm run build"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
