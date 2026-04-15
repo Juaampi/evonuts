@@ -13,8 +13,8 @@ function slugify(text) {
 }
 
 async function main() {
-  const adminEmail = process.env.ADMIN_EMAIL || "admin@evonut.local";
-  const adminPassword = process.env.ADMIN_PASSWORD || "evonut123";
+  const adminEmail = process.env.ADMIN_EMAIL || "admin@admin.com";
+  const adminPassword = process.env.ADMIN_PASSWORD || "adminpassword";
   const passwordHash = await bcrypt.hash(adminPassword, 10);
 
   await prisma.adminUser.upsert({
