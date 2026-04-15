@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" rx="48" fill="#0c1117"/>
+  <rect x="130" y="120" width="540" height="560" rx="58" fill="#111a27" stroke="#f0cf66" stroke-width="10"/>
+  <text x="400" y="250" text-anchor="middle" font-size="52" fill="#f0cf66" font-family="Arial" font-weight="800">PURE WHEY</text>
+  <text x="400" y="330" text-anchor="middle" font-size="36" fill="#fff" font-family="Arial">GOLD NUTRITION</text>
+</svg>

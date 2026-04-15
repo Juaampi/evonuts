@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" rx="48" fill="#090d14"/>
+  <polygon points="400,100 620,680 180,680" fill="#10243d" stroke="#27a5ff" stroke-width="12"/>
+  <text x="400" y="360" text-anchor="middle" font-size="58" fill="#27a5ff" font-family="Arial" font-weight="800">PRE</text>
+  <text x="400" y="430" text-anchor="middle" font-size="54" fill="#fff" font-family="Arial" font-weight="800">RUSH</text>
+  <text x="400" y="500" text-anchor="middle" font-size="30" fill="#a8d3ff" font-family="Arial">XTRENGHT</text>
+</svg>
