@@ -1,9 +1,5 @@
 [build]
-  command = "npm run db:push && npm run build"
+  command = "npm run build"
 
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "false"
-
-[functions]
-  external_node_modules = ["@prisma/client", "prisma"]
-  included_files = ["node_modules/.prisma/client/**"]

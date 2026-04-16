@@ -2,9 +2,7 @@ const { useMemo, useState } = require("react");
 const Layout = require("../components/Layout");
 const SectionTitle = require("../components/SectionTitle");
 const ProductCard = require("../components/ProductCard");
-const { prisma } = require("../lib/prisma");
-const { serialize } = require("../lib/serialize");
-const { enhanceProducts } = require("../lib/product-media");
+const { products, brands, siteContent } = require("../lib/data");
 
 function ProductsPage({ siteContent, products, brands }) {
   const [search, setSearch] = useState("");
@@ -139,21 +137,12 @@ function ProductsPage({ siteContent, products, brands }) {
   );
 }
 
-async function getServerSideProps() {
-  const [siteContent, products, brands] = await Promise.all([
-    prisma.siteContent.findFirst(),
-    prisma.product.findMany({
-      include: { brand: true },
-      orderBy: [{ type: "asc" }, { sortOrder: "asc" }],
-    }),
-    prisma.brand.findMany({ orderBy: { name: "asc" } }),
-  ]);
-
+function getServerSideProps() {
   return {
     props: {
-      siteContent: serialize(siteContent),
-      products: serialize(enhanceProducts(products)),
-      brands: serialize(brands),
+      siteContent,
+      products,
+      brands,
     },
   };
 }

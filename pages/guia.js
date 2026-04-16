@@ -1,9 +1,7 @@
 const Layout = require("../components/Layout");
 const SectionTitle = require("../components/SectionTitle");
 const GuideWizard = require("../components/GuideWizard");
-const { prisma } = require("../lib/prisma");
-const { serialize } = require("../lib/serialize");
-const { enhanceProducts } = require("../lib/product-media");
+const { products, siteContent } = require("../lib/data");
 
 function GuidePage({ siteContent, products }) {
   return (
@@ -27,19 +25,11 @@ function GuidePage({ siteContent, products }) {
   );
 }
 
-async function getServerSideProps() {
-  const [siteContent, products] = await Promise.all([
-    prisma.siteContent.findFirst(),
-    prisma.product.findMany({
-      include: { brand: true },
-      orderBy: { sortOrder: "asc" },
-    }),
-  ]);
-
+function getServerSideProps() {
   return {
     props: {
-      siteContent: serialize(siteContent),
-      products: serialize(enhanceProducts(products)),
+      siteContent,
+      products,
     },
   };
 }

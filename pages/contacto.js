@@ -1,7 +1,6 @@
 const Layout = require("../components/Layout");
 const SectionTitle = require("../components/SectionTitle");
-const { prisma } = require("../lib/prisma");
-const { serialize } = require("../lib/serialize");
+const { siteContent } = require("../lib/data");
 
 function ContactPage({ siteContent }) {
   return (
@@ -60,9 +59,8 @@ function ContactPage({ siteContent }) {
   );
 }
 
-async function getServerSideProps() {
-  const siteContent = await prisma.siteContent.findFirst();
-  return { props: { siteContent: serialize(siteContent) } };
+function getServerSideProps() {
+  return { props: { siteContent } };
 }
 
 export { getServerSideProps };

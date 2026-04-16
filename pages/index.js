@@ -6,9 +6,7 @@ const GuideWizard = require("../components/GuideWizard");
 const BrandCard = require("../components/BrandCard");
 const ArticleCard = require("../components/ArticleCard");
 const CategoryCard = require("../components/CategoryCard");
-const { prisma } = require("../lib/prisma");
-const { serialize } = require("../lib/serialize");
-const { enhanceProducts } = require("../lib/product-media");
+const { products, brands, articles, siteContent } = require("../lib/data");
 
 function HomePage({ siteContent, featuredProducts, allProducts, brands, articles }) {
   const nationalBrands = brands.filter((brand) => brand.origin === "nacional");
@@ -183,34 +181,17 @@ function HomePage({ siteContent, featuredProducts, allProducts, brands, articles
   );
 }
 
-async function getServerSideProps() {
-  const [siteContent, featuredProducts, allProducts, brands, articles] = await Promise.all([
-    prisma.siteContent.findFirst(),
-    prisma.product.findMany({
-      where: { featured: true },
-      orderBy: { sortOrder: "asc" },
-      include: { brand: true },
-      take: 6,
-    }),
-    prisma.product.findMany({
-      orderBy: { sortOrder: "asc" },
-      include: { brand: true },
-    }),
-    prisma.brand.findMany({ orderBy: { sortOrder: "asc" } }),
-    prisma.article.findMany({
-      where: { featured: true },
-      orderBy: { sortOrder: "asc" },
-      take: 4,
-    }),
-  ]);
+function getServerSideProps() {
+  const featuredProducts = products.filter((p) => p.featured).slice(0, 6);
+  const featuredArticles = articles.filter((a) => a.featured).slice(0, 4);
 
   return {
     props: {
-      siteContent: serialize(siteContent),
-      featuredProducts: serialize(enhanceProducts(featuredProducts)),
-      allProducts: serialize(enhanceProducts(allProducts)),
-      brands: serialize(brands),
-      articles: serialize(articles),
+      siteContent,
+      featuredProducts,
+      allProducts: products,
+      brands,
+      articles: featuredArticles,
     },
   };
 }

@@ -1,8 +1,7 @@
 const Layout = require("../components/Layout");
 const SectionTitle = require("../components/SectionTitle");
 const BrandCard = require("../components/BrandCard");
-const { prisma } = require("../lib/prisma");
-const { serialize } = require("../lib/serialize");
+const { brands, siteContent } = require("../lib/data");
 
 function BrandsPage({ siteContent, brands }) {
   const national = brands.filter((brand) => brand.origin === "nacional");
@@ -44,13 +43,8 @@ function BrandsPage({ siteContent, brands }) {
   );
 }
 
-async function getServerSideProps() {
-  const [siteContent, brands] = await Promise.all([
-    prisma.siteContent.findFirst(),
-    prisma.brand.findMany({ orderBy: [{ origin: "asc" }, { sortOrder: "asc" }] }),
-  ]);
-
-  return { props: { siteContent: serialize(siteContent), brands: serialize(brands) } };
+function getServerSideProps() {
+  return { props: { siteContent, brands } };
 }
 
 export { getServerSideProps };
