@@ -100,39 +100,22 @@ textarea {
 .brand-mark {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
   min-width: 0;
 }
 
-.brand-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  display: grid;
-  place-items: center;
-  font-family: "Sora", sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  background:
-    linear-gradient(135deg, rgba(89, 225, 255, 0.28), rgba(0, 119, 255, 0.18)),
-    rgba(8, 17, 28, 0.9);
-  border: 1px solid rgba(89, 225, 255, 0.18);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 10px 30px rgba(0, 119, 255, 0.22);
+.brand-logo-image {
+  width: 220px;
+  max-width: min(42vw, 220px);
+  height: auto;
+  border-radius: 14px;
 }
 
-.brand-mark strong,
 .footer-brand,
 .admin-brand {
   display: block;
   font-family: "Sora", sans-serif;
   font-size: 1.1rem;
   letter-spacing: 0.12em;
-}
-
-.brand-mark small {
-  color: var(--muted);
-  display: block;
-  margin-top: 2px;
 }
 
 .nav-toggle {
@@ -331,8 +314,9 @@ p {
 .hero-logo-panel img {
   width: 100%;
   border-radius: 24px;
-  object-fit: cover;
-  min-height: 360px;
+  object-fit: contain;
+  min-height: 320px;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .hero-stack {
@@ -395,6 +379,7 @@ p {
 .product-grid,
 .brand-grid,
 .article-grid,
+.campaign-grid,
 .admin-stats {
   display: grid;
   gap: 20px;
@@ -671,6 +656,42 @@ p {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.brand-visual-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 20px;
+}
+
+.brand-visual-card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(10, 16, 25, 0.88), rgba(7, 11, 18, 0.96));
+  box-shadow: var(--shadow);
+}
+
+.brand-visual-card span {
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+}
+
+.brand-visual-card img {
+  width: 100%;
+  border-radius: 22px;
+  object-fit: cover;
+}
+
+.brand-visual-card--logo img {
+  min-height: 100%;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 18px;
+}
+
 .brand-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -824,8 +845,71 @@ p {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.campaign-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .article-card {
   overflow: hidden;
+}
+
+.campaign-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(10, 16, 25, 0.88), rgba(7, 11, 18, 0.96));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.24s ease, border-color 0.24s ease;
+}
+
+.campaign-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-strong);
+}
+
+.campaign-media {
+  padding: 18px 18px 0;
+}
+
+.campaign-media img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+.campaign-content {
+  padding: 18px 22px 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.campaign-content span {
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+}
+
+.campaign-card a {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.brand-feature-banner {
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(10, 16, 25, 0.88), rgba(7, 11, 18, 0.96));
+  box-shadow: var(--shadow);
+}
+
+.brand-feature-banner img {
+  width: 100%;
+  max-height: 640px;
+  object-fit: cover;
+  border-radius: 22px;
 }
 
 .article-media {
@@ -1014,6 +1098,13 @@ p {
   align-items: start;
 }
 
+.footer-logo-image {
+  width: 220px;
+  max-width: 100%;
+  margin-bottom: 12px;
+  border-radius: 14px;
+}
+
 .footer-brand {
   font-size: 1.35rem;
   margin-bottom: 10px;
@@ -1163,6 +1254,7 @@ p {
   .guide-grid,
   .contact-grid,
   .brand-columns,
+  .brand-visual-grid,
   .footer-grid,
   .contact-strip {
     grid-template-columns: 1fr;
@@ -1220,6 +1312,7 @@ p {
   .category-grid,
   .product-grid,
   .article-grid,
+  .campaign-grid,
   .brand-grid,
   .choice-grid,
   .filters-panel,
@@ -1245,7 +1338,7 @@ p {
   }
 
   .hero-logo-panel img {
-    min-height: 240px;
+    min-height: 220px;
   }
 
   .product-image {

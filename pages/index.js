@@ -3,14 +3,12 @@ const Hero = require("../components/Hero");
 const SectionTitle = require("../components/SectionTitle");
 const ProductCard = require("../components/ProductCard");
 const GuideWizard = require("../components/GuideWizard");
-const BrandCard = require("../components/BrandCard");
 const ArticleCard = require("../components/ArticleCard");
 const CategoryCard = require("../components/CategoryCard");
-const { products, brands, articles, siteContent } = require("../lib/data");
+const CampaignCard = require("../components/CampaignCard");
+const { products, brands, articles, campaigns, siteContent } = require("../lib/data");
 
-function HomePage({ siteContent, featuredProducts, allProducts, brands, articles }) {
-  const nationalBrands = brands.filter((brand) => brand.origin === "nacional");
-  const importedBrands = brands.filter((brand) => brand.origin === "importado");
+function HomePage({ siteContent, featuredProducts, allProducts, brands, articles, campaigns }) {
   const categoryHighlights = [
     {
       title: "Suplementos nacionales",
@@ -117,6 +115,21 @@ function HomePage({ siteContent, featuredProducts, allProducts, brands, articles
       <section className="section">
         <div className="container">
           <SectionTitle
+            eyebrow="Campañas visuales"
+            title="Piezas listas para educar, vender mejor y darle más identidad real a EVONUT"
+            description="Estas imágenes funcionan mejor como campañas editoriales dentro del sitio: mejoran percepción de marca y ayudan a explicar productos con más contexto."
+          />
+          <div className="campaign-grid">
+            {campaigns.map((campaign) => (
+              <CampaignCard key={campaign.id} campaign={campaign} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <SectionTitle
             eyebrow="Aprendé sin vueltas"
             title="Contenido orientativo pensado para vender con claridad, no para confundir"
             description="Bloques informativos más modernos, fáciles de leer y con una estética consistente con el resto del sitio."
@@ -133,26 +146,24 @@ function HomePage({ siteContent, featuredProducts, allProducts, brands, articles
         <div className="container">
           <SectionTitle
             eyebrow="Marcas"
-            title="Marcas presentadas con una grilla más limpia y una lectura más premium"
-            description="Separación visual clara entre líneas nacionales e importadas, con tarjetas alineadas y consistentes."
+            title="Las marcas y la identidad visual ya entran al home como piezas completas"
+            description="En vez de separar todo en muchas tarjetas, esta sección resume mejor la propuesta y usa los artes que compartiste."
           />
-          <div className="brand-columns">
-            <div>
-              <h3 className="split-title">Nacionales</h3>
-              <div className="brand-grid">
-                {nationalBrands.map((brand) => (
-                  <BrandCard key={brand.id} brand={brand} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="split-title">Importadas</h3>
-              <div className="brand-grid">
-                {importedBrands.map((brand) => (
-                  <BrandCard key={brand.id} brand={brand} />
-                ))}
-              </div>
-            </div>
+          <div className="brand-visual-grid">
+            <article className="brand-visual-card">
+              <span>Nacionales</span>
+              <img
+                src="/images/campaigns/brands-nationales.png"
+                alt="Marcas nacionales EVONUT"
+              />
+            </article>
+            <article className="brand-visual-card">
+              <span>Importadas</span>
+              <img
+                src="/images/campaigns/importadas.png"
+                alt="Marcas importadas EVONUT"
+              />
+            </article>
           </div>
         </div>
       </section>
@@ -192,6 +203,7 @@ function getServerSideProps() {
       allProducts: products,
       brands,
       articles: featuredArticles,
+      campaigns,
     },
   };
 }

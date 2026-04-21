@@ -35,7 +35,7 @@ function Hero({ siteContent, featuredProducts = [] }) {
         <div className="hero-visual">
           <div className="hero-logo-panel">
             <img
-              src="/images/logo/intentodelogo.png"
+              src="/images/logo/image.png"
               alt="EVONUT Suplementos Deportivos"
             />
           </div>

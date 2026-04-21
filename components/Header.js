@@ -15,15 +15,20 @@ function Header() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
+  const isActive = (href) => {
+    if (href === "/") return router.pathname === href;
+    return router.pathname === href || router.pathname.startsWith(`${href}/`);
+  };
+
   return (
     <header className="site-header">
       <div className="container nav-wrap">
         <Link href="/" className="brand-mark">
-          <span className="brand-icon">EV</span>
-          <span>
-            <strong>EVONUT</strong>
-            <small>Suplementos deportivos premium</small>
-          </span>
+          <img
+            className="brand-logo-image"
+            src="/images/logo/image.png"
+            alt="EVONUT Suplementos Deportivos"
+          />
         </Link>
 
         <button
@@ -42,7 +47,7 @@ function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={router.pathname === link.href ? "active" : ""}
+              className={isActive(link.href) ? "active" : ""}
             >
               {link.label}
             </Link>

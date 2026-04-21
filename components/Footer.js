@@ -5,7 +5,11 @@ function Footer({ siteContent }) {
     <footer className="site-footer">
       <div className="container footer-grid footer-grid--main">
         <div className="footer-brand-block">
-          <p className="footer-brand">EVONUT</p>
+          <img
+            className="footer-logo-image"
+            src="/images/logo/image.png"
+            alt="EVONUT Suplementos Deportivos"
+          />
           <p>
             Suplementos deportivos con una experiencia más clara, visual premium y
             consulta directa por WhatsApp.
